@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="testt.html">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            justify-content: flex-end; 
+            align-items: flex-end;
+            
+
+            
+            
+        }
+
+        #chat-container {
+            width: 300px;
+            margin: 20px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-header {
+            background-color:#800080;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #chat-body {
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        #user-input {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        #user-message {
+            flex: 1;
+            padding: 5px;
+        }
+
+        #send-button {
+            background-color:#800080;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+            #popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #close-btn {
+            cursor: pointer;
+            float: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pop-up container -->
+<div id="popup-container">
+    <span id="close-btn" onclick="closePopup()">X</span>
+    <p>You can use the chatbot for assistance!</p>
+</div>
+
+<!-- Overlay to cover the page -->
+<div id="overlay"></div>
+
+<!-- Your page content goes here -->
+
+
+
+
+<div id="chat-container">
+    <div id="chat-header">SahayaBot</div>
+    <div id="chat-body"></div>
+    <div id="user-input">
+        <input type="text" id="user-message" placeholder="Type a message...">
+        <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Show the pop-up
+    showPopup();
+});
+
+function showPopup() {
+    document.getElementById('popup-container').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('popup-container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+    function sendMessage() {
+    var userMessage = document.getElementById('user-message').value;
+    if (userMessage.trim() === '') return;
+
+    appendMessage('user', userMessage);
+
+    // Customized responses based on user input
+    var botResponse;
+    if (userMessage.toLowerCase().includes('hello')) {
+        botResponse = 'Hi there! How can I help you?';
+    } else if (userMessage.toLowerCase().includes('goodbye')) {
+        botResponse = 'Goodbye! Have a great day!';
+    } else if (userMessage.toLowerCase().includes('which clause do i belong to')) {
+        botResponse = 'For how many years have you studied in karnataka?';
+    } 
+    else if (userMessage.toLowerCase().includes('7 years')) {
+        botResponse = 'You belong to clause a';    
+    } else if (userMessage.toLowerCase().includes('class 10')) {
+        botResponse = 'Upload your class 10 markscard to the redirected link';
+    } else if (userMessage.toLowerCase().includes('thanks')) {
+        botResponse = 'All the best for your admissions and college life ahead';
+    } else {
+        // Default response for unrecognized input
+        botResponse = 'I m sorry, I didnt understand that. Can you please rephrase?';
+    }
+
+    appendMessage('bot', botResponse);
+
+    // Clear the user input field
+    document.getElementById('user-message').value = '';
+}
+
+
+    function appendMessage(sender, message) {
+        var chatBody = document.getElementById('chat-body');
+        var messageElement = document.createElement('div');
+        messageElement.className = sender === 'user' ? 'user-message' : 'bot-message';
+        messageElement.textContent = message;
+        chatBody.appendChild(messageElement);
+
+        // Scroll to the bottom to show the latest message
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
