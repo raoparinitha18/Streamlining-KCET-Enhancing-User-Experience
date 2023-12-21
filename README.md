@@ -1,0 +1,1 @@
+This project aims at solving the existing problems faced by consumers, in govt. websites, by streamlining govt. procedures,for easy navigation. WWe have integrated a chatbot, which will answer all the queries a student has, related to KCET admission process.
