@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Questions Chatbot</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', sans-serif;
+            margin: 20px;
+        }
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 100%; /* Adjusted for better mobile responsiveness */
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #chat-header {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        #chat-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        #chat {
+            margin-bottom: 10px;
+        }
+        #options button {
+            font-size: 15px;
+            margin: 5px;
+            font-family: 'Times New Roman';
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container">
+    <div id="chat-header">
+        <img src="chat.png" alt="Chatbot Icon" id="chat-icon">
+        Nested Questions Chatbot
+    </div>
+    <div id="chat"></div>
+    <div id="options"></div>
+</div>
+
+<script>
+    const chatContainer = document.getElementById('chat');
+    const optionsContainer = document.getElementById('options');
+
+    function showMessage(message) {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        chatContainer.appendChild(messageElement);
+    }
+
+    function showOptions(options) {
+        optionsContainer.innerHTML = '';
+
+        options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.textContent = option.text;
+            button.addEventListener('click', () => handleOptionClick(option));
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function handleOptionClick(selectedOption) {
+        if (selectedOption.link) {
+            if (typeof selectedOption.link === 'string') {
+                window.open(selectedOption.link, '_blank');
+            } else if (typeof selectedOption.link === 'object' && selectedOption.link.href) {
+                window.location.href = selectedOption.link.href;
+            }
+        } else {
+            showMessage(`Selected: ${selectedOption.text}`);
+
+            if (selectedOption.nestedQuestions) {
+                setTimeout(() => {
+                    showOptions(selectedOption.nestedQuestions);
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    if (selectedOption.text === 'studied in Karnataka for a minimum of 7 years') {
+                        showMessage("Bot: You belong to Clause A");
+                    } else if (selectedOption.text === 'Studied in Kannada speaking disputed areas for 7 years') {
+                        showMessage("Bot: You belong to Clause D");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'Elsewhere, other than Karnataka') {
+                        showMessage("Bot: You belong to Clause C");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'Yes' && selectedOption.parentQuestion === 'parents studied in Karnataka for a minimum of 7 years') {
+                        showMessage("Bot: You belong to Clause B");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'No' &&
+                        (selectedOption.parentQuestion === 'parents studied in Karnataka for a minimum of 7 years' ||
+                            selectedOption.parentQuestion === 'Mother tongue Kannada/Tulu/Kodava')) {
+                        showOptions([
+                            { text: 'studied in Karnataka for a minimum of 7 years' },
+                            { text: 'studied in Karnataka for 11th and 12th standard?' },
+                            { text: 'Studied outside Karnataka' }
+                        ]);
+                    } else {
+                        showMessage("Bot: All the best for your college admissions!");
+                        optionsContainer.innerHTML = '';
+                    }
+                }, 1000);
+            }
+        }
+    }
+
+    showMessage("Bot: Hello! How can I help you?");
+    showOptions([
+        {
+            text: 'Document Verification',
+            nestedQuestions: [
+                { text: 'studied in Karnataka for a minimum of 7 years' },
+                {
+                    text: 'studied in Karnataka for 11th and 12th standard?',
+                    nestedQuestions: [
+                        {
+                            text: 'parents studied in Karnataka for a minimum of 7 years',
+                            nestedQuestions: [
+                                { text: 'Yes', parentQuestion: 'parents studied in Karnataka for a minimum of 7 years' },
+                                { text: 'No', parentQuestion: 'parents studied in Karnataka for a minimum of 7 years' }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    text: 'Studied outside Karnataka',
+                    nestedQuestions: [
+                        {
+                            text: 'Mother tongue Kannada/Tulu/Kodava',
+                            nestedQuestions: [
+                                { text: 'Studied in Kannada speaking disputed areas for 7 years', nestedQuestions: [{ text: 'Bot: You belong to Clause D' }] },
+                                { text: 'Elsewhere, other than Karnataka', nestedQuestions: [{ text: 'Bot: You belong to Clause C' }] }
+                            ]
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            text: 'Option Entry',
+            link: { href: 'C:\\Users\\hp\\OneDrive\\Desktop\\chatbot\\web1.html' },
+        },
+        {
+            text: 'Seat Allotment',
+            link: { href: 'C:\\Users\\hp\\OneDrive\\Desktop\\chatbot\\seat allotment.html' },
+        }
+    ]);
+</script>
+
+</body>
+</html>
+
+
+
