@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cancellation</title>
+    <style>
+        body {
+            
+            margin: 20px;
+        }
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        h1 {
+            
+            color: #f0dada;
+            text-align: center;
+        }
+        h2 {
+            
+            color: #000000;
+            text-align: center;
+        }
+        h3 {
+            text-align: left;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #292727;
+            text-align: left;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>KCET Registration</h1>
+      </header>
+    <h2>Cancellation of Seat Allotted</h2>
+    <ul>
+        <li>There are chances that a candidate who is allotted a seat in the first or second round of KCET counselling wishes to surrender or cancel the seat. It can be done before the last KCET option entry 2023 date for the second extended round. Such a candidate shall be refunded the fee after deducting the processing fee of Rs 5000.</li><br>
+        <li>Forfeiture of the complete fee shall be done for the candidate allotted a seat in first or second round who has not reported at the college/ institute so allotted and surrenders the seat after the second extended round completion.</li><br>
+        <li>Complete fee will also be forfeited if a candidate surrenders the seat allotted through the second extended round</li><br>
+        <li>Surrender or cancellation of seats shall not be allowed to candidates if they do not return the original documents like admission order, bank challan, green card, and verification slip.</li><br>
+    </ul>
+    <footer>
+            <p>&copy; 2023 KCET. All rights reserved.</p>
+          </footer>
+        
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Information Result</title>
+    <style>
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+     
+        /* Add some margin to the right of the checkbox label */
+        label {
+            margin-right: 10px;
+        }
+
+        /* Add some space between the checkbox label and the "Learn more" link */
+        a {
+            margin-left: 10px;
+        }
+   
+    </style>
+</head>
+<body>
+    <header>
+        <img src="government.png.jpg" alt="Your Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+        <h1>KCET Registration</h1>
+    </header>
+
+    <h2>Required documents are:</h2>
+
+    <script>
+        // Parse the URL parameters to get the selected fruit
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedFruit = urlParams.get('fruit');
+
+        // Function to create checkboxes based on the selected fruit
+        function createCheckboxes() {
+            const checkboxes = {
+                'Clause a': [{label:'SSLC/10th markscard', href: 'doc.html'},
+                             {label: '12th/PUC markscard', href:'doc.html'},
+                             {label:'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO', href:'doc.html'},
+                             {label:'Rural study certificate from 1-10th', href:'doc.html'},
+                             {label:'Kannada medium study certificates 1-10th', href:'doc.html'},
+                             {label:'Caste/Caste income certificate(in the name of the candidate)',href:'doc.html'}],
+                'Clause b': [{label:'SSLC/10th markscard',href:'doc.html'},
+                             {label:'12th/PUC markscard',href:'doc.html'} , 
+                             {label:' candidates Study certificate ',href:'doc.html'},
+                             {label:'Study certificate of parents studied in karnataka for 7 years',href:'doc.html'},
+                             {label:'Caste/Caste income certificate(in the name of the candidate)',href:'doc.html'}],
+                'Clause c': [ {label:'SSLC/10th markscard', href: 'doc.html'},
+                             {label: '12th/PUC markscard', href:'doc.html'},
+                             {label:'Domicile certificate of the candidate/father/mother',href:'doc.html'},
+                             {label:'Transfer certificate with mother tounge details', href:'doc.html'},
+                             {label:'Certificates in claiming mother tounge as Kannada/Tulu/Kodava',href:'doc.html'},
+                             {label:'Sworn seclaration of regarding mother tounge of the candidate',href:'doc.html'}],
+                'Clause d': [{label:'SSLC/10th markscard',href:'doc.html'},
+                             {label:'12th/PUC markscard',href:'doc.html'}, 
+                             {label:'Residential certificate',href:'doc.html'},
+                             {label:'Study certificate countersigned by BEO',href:'doc.html'},
+                             {label:'Certificates in claiming mother tounge as Kannada/Tulu/Kodava',href:'doc.html'},
+                             {label:'Sworn seclaration of regarding mother tounge of the candidate',href:'doc.html'}],
+                'Clause e': ['SSLC/10th markscard', '12th/PUC markscard', 'Study certificate of12th/PUC countersigned by BEO','Employment certificate of the parent'],
+                'Clause f': ['SSLC/10th markscard', '12th/PUC markscard', 'Caste/Caste income certificate(in the name of the candidate)','Parents hometown declaration certificate'],
+                'Clause g': ['SSLC/10th markscard', '12th/PUC markscard', 'Study certificate of12th/PUC countersigned by BEO','Service certificate of the parent'],
+                'Clause h': ['SSLC/10th markscard', '12th/PUC markscard', 'Caste/Caste income certificate(in the name of the candidate)','Parents hometown declaration certificate'],
+                'Clause i': ['SSLC/10th markscard', '12th/PUC markscard', 'Study certificate of12th/PUC countersigned by BEO','A certificate from the employer stating the pare=nts periof of employment','A certificate from the employer indicating parents an employee of Union Government'],
+                'Clause j': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+                'Clause k': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+                'Clause l': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+                'Clause m': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+                'Clause n': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+                'Clause o': ['SSLC/10th markscard', 'SSLC/10th markscard', 'Study certificate of 12th/puc and 10th/SSLC countersigned by BEO'],
+               
+                
+                // Add more fruits and their respective information
+            };
+
+            const fruitInfo = checkboxes[selectedFruit];
+
+            if (fruitInfo) {
+                const checkboxContainer = document.createElement('div');
+                checkboxContainer.innerHTML = "<h3>" + selectedFruit + " Information:</h3>";
+
+                fruitInfo.forEach(function (info) {
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = info.label;
+                    checkbox.name = info.label;
+
+                    const label = document.createElement('label');
+                    label.htmlFor = info.label;
+                    label.appendChild(document.createTextNode(info.label));
+
+                    const link = document.createElement('a');
+                    link.href ="doc.html";
+                    link.appendChild(document.createTextNode('upload'));
+
+                    checkboxContainer.appendChild(checkbox);
+                    checkboxContainer.appendChild(label);
+                    checkboxContainer.appendChild(link);
+                    checkboxContainer.appendChild(document.createElement('br'));
+                });
+
+                document.body.appendChild(checkboxContainer);
+            } else {
+                // Handle unknown or unsupported fruit
+                document.body.innerHTML = "<p>Selected fruit information not available.</p>";
+            }
+        }
+
+        // Call the function to create checkboxes on page load
+        window.onload = createCheckboxes;
+    </script>
+
+    <footer>
+        <p>&copy; 2023 KCET. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

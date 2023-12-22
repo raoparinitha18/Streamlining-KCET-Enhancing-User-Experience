@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="ttstyles.css">
+</head>
+<body>
+  <header>
+    <img src="government.png.jpg" alt="Your Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+    <h1> KCET Registration</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home page.html">Home</a></li>
+      <li><a href="log in.html">Registration</a></li>
+      <li><a href="index.html">Document upload</a></li>
+  </ul>
+  </nav>
+    <div class="signup-container">
+      <form action="#" method="post" onsubmit="validatePassword(); return false;">
+        <h2>sign up</h2>
+          <label for="E-mail">E-mail:</label>
+          <input type="text" id="E-mail" name="E-mail" placeholder="E-mail" required>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="enter a strong password"required>
+          <label for="confirm password">Confrim Password:</label>
+          <input type="password" id="password" name="confrim password" placeholder="confirm your password"required>
+          <button id="submit-button" value="submit" onclick="submitForm()">Submit</button>
+
+          <script>
+            function submitForm() {
+              // Display the alert
+              var confirmSubmit = confirm('Are you sure?');
+          
+              // If the user clicks "OK" in the alert, redirect to success.html
+              if (confirmSubmit) {
+                window.location.href = 'log in.html';
+              } else {
+                window.location.href = 'tt.html';
+                // If the user clicks "Cancel" in the alert, you can add any additional logic here
+              }
+            }
+          </script>
+        </form>
+        <script>
+          function validatePassword() {
+              var password = document.getElementById("password").value;
+              var flag = 0;
+  
+              if (password.length < 6 || password.length > 16) {
+                  flag = -1;
+              } else if (!/[a-z]/.test(password)) {
+                  flag = -1;
+              } else if (!/[A-Z]/.test(password)) {
+                  flag = -1;
+              } else if (!/[0-9]/.test(password)) {
+                  flag = -1;
+              } else if (!/[_@$#]/.test(password)) {
+                  flag = -1;
+              } else if (/\s/.test(password)) {
+                  flag = -1;
+              } else {
+                  flag = 0;
+                  alert("Valid Password");
+                  return;
+              }
+  
+              if (flag === -1) {
+                  alert("Not a Valid Password");
+              }
+          }
+      </script>
+      
+  </div>
+
+  <footer>
+    <p>&copy; 2023 KCET. All rights reserved.</p>
+  </footer>
+</body>
+</html>

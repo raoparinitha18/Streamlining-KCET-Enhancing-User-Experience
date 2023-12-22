@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        footer {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        form {
+            max-width: 400px;
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align:center;
+
+        }
+
+        select, input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+        select#fruits {
+            display: block;
+            margin-bottom: 10px;
+            text-align:center;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        input[type="button"] {
+            display:block;
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align:center;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+       
+    </style>
+    <script>
+        function submitForm() {
+            var selectedFruit = document.getElementById("fruits").value;
+            window.location.href = "result.html?fruit=" + encodeURIComponent(selectedFruit);
+        }
+    </script>
+
+</head>
+<body>
+    <header>
+        <img src="government.png.jpg" alt="Your Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+        <h1>KCET Registration</h1>
+    </header>
+
+    <h2 style="text-align:center;">Select your clause:</h2>
+    <form>
+        
+        <select id="fruits" name="fruits">
+            <option value="select">Select a clause</option>
+            <option value="Clause a">Clause a</option>
+            <option value="Clause b">Clause b</option>
+            <option value="Clause c">Clause c</option>
+            <option value="Clause d">Clause d</option>
+            <option value="Clause e">Clause e</option>
+            <option value="Clause f">Clause f</option>
+            <option value="Clause g">Clause g</option>
+            <option value="Clause h">Clause h</option>
+            <option value="Clause i">Clause i</option>
+            <option value="Clause j">Clause j</option>
+            <option value="Clause k">Clause k</option>
+            <option value="Clause l">Clause l</option>
+            <option value="Clause m">Clause m</option>
+            <option value="Clause n">Clause n</option>
+            <option value="Clause o">Clause o</option>
+            
+            <!-- Add more fruit options as needed -->
+        </select>
+
+        <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+    <footer>
+        <p>&copy; 2023 KCET. All rights reserved.</p>
+    </footer>
+</body>
+</html>

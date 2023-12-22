@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom File Upload Button</title>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <!-- Google Fonts  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style02.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p>Upload files with these extintions:<br>
+        "jpg", "jpeg", "png", "gif", "doc", "docx", "xls", "xlsx"</p>
+      <input type="file" id="file-input" multiple/>
+      
+    
+      <label for="file-input">
+        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        &nbsp; Upload
+      </label>
+      <div id="num-of-files">No Files Choosen</div>
+      <ul id="files-list"></ul>
+      <script src="script05.js">
+        
+      </script>
+        
+      
+    </div>
+    
+    
+    
+    <button id="submit-button" value="submit" onclick="submitForm()">Submit</button>
+
+<script>
+  function submitForm() {
+    // Display the alert
+    var confirmSubmit = confirm('Are you sure?');
+
+    // If the user clicks "OK" in the alert, redirect to success.html
+    if (confirmSubmit) {
+      window.location.href = 'success.html';
+    } else {
+      // If the user clicks "Cancel" in the alert, you can add any additional logic here
+    }
+  }
+</script>
+
+    
+    <!-- Script -->
+    
+  </body>
+</html>

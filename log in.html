@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="tstyles.css">
+</head>
+<body>
+  <header>
+    <img src="government.png.jpg" alt="Your Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+    <h1> KCET Registration</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="home page.html">Home</a></li>
+            <li><a href="log in.html">Registration</a></li>
+            <li><a href="index.html">Document upload</a></li>
+        </ul>
+  </nav>
+
+  <div class="login-container">
+    <form action="/login" method="POST">
+      <h2>Login</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+
+  <footer>
+
+    <p>&copy; 2023 KCET. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCET Registration</title>
+    
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        nav {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        section {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex-grow: 1;
+        }
+        .left-side {
+            text-align: left;
+        }
+        .scrolling-updates {
+            height: 200px;
+            overflow-y: scroll;
+            padding: 10px;
+            background-color: #f0f0f0;
+            font-size: 18px;
+            font-family: 'Times New Roman';
+        }
+    
+        /* Chatbot styles */
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 100%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #chat-header {
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+        }
+        #chat-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        #chat {
+            margin-bottom: 10px;
+        }
+        #options button {
+            font-size: 15px;
+            margin: 5px;
+            font-family: 'Times New Roman';
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="government.png.jpg" alt="Your Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+        <h1> KCET Registration</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="home page.html">Home</a></li>
+            <li><a href="log in.html">Registration</a></li>
+            <li><a href="index.html">Document upload</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="left-side">
+            <div class="slideshow-container">
+                                <div class="mySlides fade">
+                    <img src="img3.jpg" style="width: 35%">
+                </div>
+
+            </div>
+        </div>
+        <div class="scrolling-updates">
+            <li><a href="option entry.html">Option entry </a></li>
+            <li><a href="seat allotment.html">Seat Allotment</a></li>
+            <li><a href="seat allotment process.html">Seat allotment process</a></li>
+            <li><a href="home page.html">Update on KCET admissions</a></li>
+            <li><a href="home page.html">Latest updates on option entry</a></li>
+            <li><a href="home page.html">DCET application form released</a></li>
+            <li><a href="home page.html">PGCET results out!</a></li>
+            <!-- Add more updates as needed -->
+        </div>
+    </section>
+    <!-- Chatbot section -->
+    <div id="chat-container">
+        <div id="chat-header">
+            <img src="chat.png" alt="Chatbot Icon" id="chat-icon">
+            Sahaya bot
+        </div>
+        <div id="chat"></div>
+        <div id="options"></div>
+    </div>
+    <!-- End of Chatbot section -->
+    <footer>
+        <p>&copy; 2023 KCET. All rights reserved.</p>
+    </footer>
+    <script>
+             
+    const chatContainer = document.getElementById('chat');
+    const optionsContainer = document.getElementById('options');
+
+    function showMessage(message) {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        chatContainer.appendChild(messageElement);
+    }
+
+    function showOptions(options) {
+        optionsContainer.innerHTML = '';
+
+        options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.textContent = option.text;
+            button.addEventListener('click', () => handleOptionClick(option));
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function handleOptionClick(selectedOption) {
+        if (selectedOption.link) {
+            if (typeof selectedOption.link === 'string') {
+                window.open(selectedOption.link, '_blank');
+            } else if (typeof selectedOption.link === 'object' && selectedOption.link.href) {
+                window.location.href = selectedOption.link.href;
+            }
+        } else {
+            showMessage(`Selected: ${selectedOption.text}`);
+
+            if (selectedOption.nestedQuestions) {
+                setTimeout(() => {
+                    showOptions(selectedOption.nestedQuestions);
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    if (selectedOption.text === 'studied in Karnataka for a minimum of 7 years') {
+                        showMessage("Bot: You belong to Clause A");
+                    } else if (selectedOption.text === 'Studied in Kannada speaking disputed areas for 7 years') {
+                        showMessage("Bot: You belong to Clause D");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'Elsewhere, other than Karnataka') {
+                        showMessage("Bot: You belong to Clause C");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'Yes' && selectedOption.parentQuestion === 'parents studied in Karnataka for a minimum of 7 years') {
+                        showMessage("Bot: You belong to Clause B");
+                        optionsContainer.innerHTML = '';
+                    } else if (selectedOption.text === 'No' &&
+                        (selectedOption.parentQuestion === 'parents studied in Karnataka for a minimum of 7 years' ||
+                            selectedOption.parentQuestion === 'Mother tongue Kannada/Tulu/Kodava')) {
+                        showOptions([
+                            { text: 'studied in Karnataka for a minimum of 7 years' },
+                            { text: 'studied in Karnataka for 11th and 12th standard?' },
+                            { text: 'Studied outside Karnataka' }
+                        ]);
+                    } else {
+                        showMessage("Bot: All the best for your college admissions!");
+                        optionsContainer.innerHTML = '';
+                    }
+                }, 1000);
+            }
+        }
+    }
+
+    showMessage("Bot: Hello! How can I help you?");
+    showOptions([
+        {
+            text: 'Document Verification',
+            nestedQuestions: [
+                { text: 'studied in Karnataka for a minimum of 7 years' },
+                {
+                    text: 'studied in Karnataka for 11th and 12th standard?',
+                    nestedQuestions: [
+                        {
+                            text: 'parents studied in Karnataka for a minimum of 7 years',
+                            nestedQuestions: [
+                                { text: 'Yes', parentQuestion: 'parents studied in Karnataka for a minimum of 7 years' },
+                                { text: 'No', parentQuestion: 'parents studied in Karnataka for a minimum of 7 years' }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    text: 'Studied outside Karnataka',
+                    nestedQuestions: [
+                        {
+                            text: 'Mother tongue Kannada/Tulu/Kodava',
+                            nestedQuestions: [
+                                { text: 'Studied in Kannada speaking disputed areas for 7 years', nestedQuestions: [{ text: 'Bot: You belong to Clause D' }] },
+                                { text: 'Elsewhere, other than Karnataka', nestedQuestions: [{ text: 'Bot: You belong to Clause C' }] }
+                            ]
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            text: 'Option Entry',
+            link: { href: 'C:\\Users\\sangh\\OneDrive\\Desktop\\devsprint\\option entry.html' },
+        },
+        {
+            text: 'Seat Allotment',
+            link: { href: 'C:\\Users\\sangh\\OneDrive\\Desktop\\devsprint\\seat allotment.html' },
+        }
+    ]);
+    </script>
+</body>
+</html>

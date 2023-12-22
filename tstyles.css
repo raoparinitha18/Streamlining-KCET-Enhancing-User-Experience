@@ -1,0 +1,84 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styling */
+    header {
+      background-color: #003366;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    }
+  nav {
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  /* Login Container Styling */
+  .login-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .login-container h2 {
+    text-align: center;
+  }
+  
+  .login-container label,
+  .login-container input,
+  .login-container button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="password"],
+  .login-container button {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  .login-container button {
+    background-color: #003366;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .login-container button:hover {
+    background-color: #001f4d;
+  }
+  
+  .login-container p {
+    text-align: center;
+  }
+  
+  /* Footer Styling */
+  footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
